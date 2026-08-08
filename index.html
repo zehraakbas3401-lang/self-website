@@ -21,7 +21,116 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
         }
+        
+        /* Hamburger Menü Stilleri */
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        
+        .menu-button:hover {
+            background: #f0f0f0;
+        }
+        
+        .menu-button span {
+            width: 25px;
+            height: 3px;
+            background: #667eea;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        
+        .menu-button.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+        
+        .menu-button.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-button.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        /* Sidebar Menü */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            padding-top: 80px;
+        }
+        
+        .sidebar-menu.active {
+            right: 0;
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .sidebar-menu button {
+            width: 100%;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            color: #333;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+        
+        .sidebar-menu button:hover {
+            background: #f0f0f0;
+            color: #667eea;
+        }
+        
+        /* Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 998;
+        }
+        
+        .menu-overlay.active {
+            display: block;
+        }
+        
         header {
             background: white;
             padding: 40px;
@@ -44,7 +153,13 @@
             margin-bottom: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
         }
+        
+        section.active {
+            display: block;
+        }
+        
         h2 {
             color: #667eea;
             margin-bottom: 15px;
@@ -87,52 +202,189 @@
     </style>
 </head>
 <body>
+    <!-- Hamburger Menü Butonu -->
+    <button class="menu-button" id="menuButton">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <!-- Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <!-- Sidebar Menü -->
+    <nav class="sidebar-menu" id="sidebarMenu">
+        <ul>
+            <li><button class="menu-item" data-section="home">🏠 Ana Sayfa</button></li>
+            <li><button class="menu-item" data-section="education">🎓 Eğitim</button></li>
+            <li><button class="menu-item" data-section="biography">👤 Biyografi</button></li>
+            <li><button class="menu-item" data-section="skills">💻 Yetenekler</button></li>
+            <li><button class="menu-item" data-section="interests">🎯 İlgi Alanları</button></li>
+            <li><button class="menu-item" data-section="poems">📜 Şiirlerim</button></li>
+            <li><button class="menu-item" data-section="projects">📚 Projeler</button></li>
+            <li><button class="menu-item" data-section="contact">📞 İletişim</button></li>
+        </ul>
+    </nav>
+
     <div class="container">
         <header>
-            <h1>Selam! 👋 Ben Zehra</h1>
+            <h1>Selaminko! 👋 Ben Zehra</h1>
             <p class="subtitle">Bilgisayar Mühendisi Öğrencisi</p>
         </header>
 
-        <section>
+        <!-- Ana Sayfa Bölümü -->
+        <section id="home" class="active">
+            <h2>🏠 Ana Sayfa</h2>
+            <p>Merhaba! Benim siteme hoş geldiniz. Sağ üstteki menüyü kullanarak beni daha yakından tanıyabilirsiniz.</p>
+            <p style="margin-top: 15px;">Menüde biyografim, yeteneklerim, şiirlerim ve daha birçok bilgiye ulaşabilirsiniz.</p>
+        </section>
+
+        <!-- Eğitim Bölümü -->
+        <section id="education">
             <h2>🎓 Eğitim</h2>
             <p><strong>İstanbul Teknik Üniversitesi (ITU)</strong></p>
             <p>Bilgisayar Mühendisliği Bölümü</p>
+            <p style="margin-top: 15px;"><strong>Başlangıç Tarihi:</strong> 2022</p>
+            <p><strong>Durum:</strong> Devam ediyor</p>
+            <p style="margin-top: 15px;">Bilgisayar mühendisliğinin temellerini öğrenirken, yazılım geliştirme ve veri analizi alanlarına özel ilgi göstermekteyim.</p>
         </section>
 
-        <section>
+        <!-- Biyografi Bölümü -->
+        <section id="biography">
+            <h2>👤 Biyografi</h2>
+            <p>Merhaba! Ben Zehra Akbaş. İstanbul Teknik Üniversitesi'nde Bilgisayar Mühendisliği okuyan bir öğrenciyim.</p>
+            <p style="margin-top: 15px;">Teknoloji ve yazılım geliştirme ile ilgili yoğun bir ilgim vardır. Özellikle web geliştirme, veri analizi ve yapay zeka alanlarında kendimi geliştirmek istiyorum.</p>
+            <p style="margin-top: 15px;">Boş zamanlarımda kodlama projelerine çalışıyor ve yeni teknolojileri öğrenmeye çalışıyorum. Ayrıca şiir yazmak da benim ilgi alanlarımdan biridir.</p>
+        </section>
+
+        <!-- Yetenekler Bölümü -->
+        <section id="skills">
             <h2>💻 Yetenekler</h2>
             <div class="skills-list">
-                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">HTML/CSS</span>
                 <span class="skill-tag">Python</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Web Tasarım</span>
+                <span class="skill-tag">Veri Analizi</span>
             </div>
+            <p style="margin-top: 20px;"><strong>Detaylar:</strong></p>
+            <ul style="margin-top: 10px;">
+                <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
+                <li><strong>Backend:</strong> Python</li>
+                <li><strong>Tasarım:</strong> Responsive Web Tasarım, UI/UX</li>
+                <li><strong>Diğer:</strong> Veri Analizi, Problem Çözme</li>
+            </ul>
         </section>
 
-        <section>
+        <!-- İlgi Alanları Bölümü -->
+        <section id="interests">
             <h2>🎯 İlgi Alanları</h2>
             <ul>
                 <li>Web Geliştirme</li>
                 <li>Yazılım Mühendisliği</li>
                 <li>Veri Analizi</li>
-                <li>Yapay Zeka</li>
+                <li>Yapay Zeka ve Makine Öğrenmesi</li>
+                <li>Şiir Yazarlığı</li>
+                <li>Yaratıcı Yazma</li>
             </ul>
         </section>
 
-        <section>
+        <!-- Şiirlerim Bölümü -->
+        <section id="poems">
+            <h2>📜 Şiirlerim</h2>
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">Rüyalar</h3>
+                <p style="line-height: 1.8; font-style: italic;">
+                    Gece içinde yıldızlar yanmakta,<br>
+                    Rüyalar saçarak her bir tarafta.<br>
+                    Umut ışığı, yolda yanmakta,<br>
+                    Kalpler suskun, gülüşler hafifçe...
+                </p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">Teknoloji ve Hayal</h3>
+                <p style="line-height: 1.8; font-style: italic;">
+                    Kodlar içinde hayaller yaşır,<br>
+                    Bitler ve baytlar rüya kurar.<br>
+                    Ekranda parıldayan umut dünyası,<br>
+                    Sonsuz olasılıklar, bitmez yazı...
+                </p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 8px;">
+                <h3 style="color: #667eea; margin-bottom: 10px;">Yolculuk</h3>
+                <p style="line-height: 1.8; font-style: italic;">
+                    Bir yolda yürüyorum hep ileri,<br>
+                    Hedefim uzakta, parlak, güzeli.<br>
+                    Adımlar sıkı, gözler yukarıda,<br>
+                    Gelecek beni çağırıyor, canlı, canlı...
+                </p>
+            </div>
+        </section>
+
+        <!-- Projeler Bölümü -->
+        <section id="projects">
             <h2>📚 Projeler</h2>
             <ul>
-                <li>Kişisel Web Sitesi (Bu proje!)</li>
-                <li>Diğer projeler yakında eklenecek...</li>
+                <li><strong>Kişisel Web Sitesi</strong> - Bu proje! HTML, CSS ve JavaScript ile oluşturulmuş portfolio sitesi.</li>
+                <li><strong>Diğer projeler yakında eklenecek...</strong></li>
             </ul>
         </section>
 
-        <section>
+        <!-- İletişim Bölümü -->
+        <section id="contact">
             <h2>📞 İletişim</h2>
-            <p>LinkedIn: <strong><a href="https://www.linkedin.com/in/zehra-akbaş-102204378?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">zehra-akbaş-102204378</a></strong></p>
-            <p>GitHub: <strong><a href="https://github.com/zehraakbas3401-lang" target="_blank">zehraakbas3401-lang</a></strong></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/zehra-akbaş-102204378?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">zehra-akbaş-102204378</a></p>
+            <p style="margin-top: 10px;"><strong>GitHub:</strong> <a href="https://github.com/zehraakbas3401-lang" target="_blank">zehraakbas3401-lang</a></p>
+            <p style="margin-top: 15px;">Benimle iletişime geçmek için yukarıdaki linklerimizi kullanabilirsiniz. Her türlü soru, öneri ve işbirliği teklifleri için bana ulaşmaktan çekinmeyin!</p>
         </section>
 
         <footer>
             <p>&copy; 2026 Zehra. Tüm Hakları Saklıdır.</p>
         </footer>
     </div>
+
+    <script>
+        // Menü açma/kapama
+        const menuButton = document.getElementById('menuButton');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        menuButton.addEventListener('click', () => {
+            menuButton.classList.toggle('active');
+            sidebarMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        });
+
+        // Overlay'e tıklandığında menüyü kapat
+        menuOverlay.addEventListener('click', () => {
+            menuButton.classList.remove('active');
+            sidebarMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+
+        // Menü öğelerine tıklandığında
+        menuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                const sectionId = e.target.getAttribute('data-section');
+                
+                // Tüm bölümleri gizle
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Seçilen bölümü göster
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Menüyü kapat
+                menuButton.classList.remove('active');
+                sidebarMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                
+                // Sayfanın üstüne git
+                window.scrollTo(0, 0);
+            });
+        });
+    </script>
 </body>
+</html>
