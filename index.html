@@ -1,22 +1,30 @@
+\ <!DOCTYPE html>  --> Belge türü bildirimi: tarayıcıya bu belgenin HTML5 olduğunu söyler
 <!DOCTYPE html>
+\ <html lang="tr">  --> Sayfa dili: Türkçe
 <html lang="tr">
 <head>
+    \ <meta charset="UTF-8">  --> Karakter kodlaması: Türkçe karakterlerin doğru görüntülenmesi için UTF-8
     <meta charset="UTF-8">
+    \ <meta name="viewport" content="width=device-width, initial-scale=1.0">  --> Mobil uyum: ekran genişliğine göre ölçekleme
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    \ <title>...</title>  --> Tarayıcı sekmesinde görünen başlık
     <title>Zehra - Bilgisayar Mühendisliği</title>
     <style>
+        \ * { margin:0;padding:0;box-sizing:border-box; }  --> Tüm elemanlar için sıfırlama ve kutu modelini kolaylaştırma
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        \ body { ... }  --> Sayfanın genel yazı tipi, renkleri ve arka plan gradyanı
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #2C3E50;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
+        \ .container { ... }  --> İçerik için maksimum genişlik ve ortalama, sayfa içi boşluklar
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -25,6 +33,7 @@
         }
         
         /* Hamburger Menü Stilleri */
+        \ .menu-button { ... }  --> Sağ üst köşedeki hamburger butonu (tasarım, konum, boyut)
         .menu-button {
             position: fixed;
             top: 20px;
@@ -45,10 +54,12 @@
             transition: background 0.3s;
         }
         
+        \ .menu-button:hover { ... }  --> Hover durumunda arka plan rengini değiştirir
         .menu-button:hover {
             background: #f0f0f0;
         }
         
+        \ .menu-button span { ... }  --> Hamburger çubuklarının görünümü (üç küçük çizgi)
         .menu-button span {
             width: 25px;
             height: 3px;
@@ -57,26 +68,30 @@
             transition: all 0.3s;
         }
         
+        \ .menu-button.active span:nth-child(1) { ... }  --> Buton aktifken (kapalı/çarpı animasyonu) ilk çubuğu döndür
         .menu-button.active span:nth-child(1) {
             transform: rotate(45deg) translate(10px, 10px);
         }
         
+        \ .menu-button.active span:nth-child(2) { ... }  --> Ortadaki çubuğu gizle (çarpı animasyonu için)
         .menu-button.active span:nth-child(2) {
             opacity: 0;
         }
         
+        \ .menu-button.active span:nth-child(3) { ... }  --> Üçüncü çubuğu ters yönde döndür
         .menu-button.active span:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -7px);
         }
         
         /* Sidebar Menü */
+        \ .sidebar-menu { ... }  --> Sağdan kayan yan menü: başlangıçta görünmez (right:-300px)
         .sidebar-menu {
             position: fixed;
             top: 0;
             right: -300px;
             width: 300px;
             height: 100vh;
-            background: white;
+            background: gray;
             box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
             transition: right 0.3s ease;
             z-index: 999;
@@ -84,19 +99,23 @@
             padding-top: 80px;
         }
         
+        \ .sidebar-menu.active { right:0; }  --> .active eklendiğinde menü görünür (sağa kayar)
         .sidebar-menu.active {
             right: 0;
         }
         
+        \ .sidebar-menu ul { list-style:none }  --> Menü öğeleri için liste stili sıfırlaması
         .sidebar-menu ul {
             list-style: none;
             margin: 0;
         }
         
+        \ .sidebar-menu li { border-bottom }  --> Her menü öğesi arasında ayraç
         .sidebar-menu li {
             border-bottom: 1px solid #f0f0f0;
         }
         
+        \ .sidebar-menu button { ... }  --> Menü içindeki butonların (link görünümlü) stili
         .sidebar-menu button {
             width: 100%;
             padding: 15px 20px;
@@ -110,12 +129,14 @@
             font-weight: 500;
         }
         
+        \ .sidebar-menu button:hover { ... }  --> Hover efekti: arka plan ve renk değişimi
         .sidebar-menu button:hover {
-            background: #f0f0f0;
-            color: #667eea;
+            background: #706565;
+            color: #969bb3;
         }
         
         /* Overlay */
+        \ .menu-overlay { ... }  --> Menü açıkken arka planı karartan yarı saydam katman (başlangıçta display:none)
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -127,26 +148,31 @@
             z-index: 998;
         }
         
+        \ .menu-overlay.active { display:block }  --> Overlay aktif olduğunda görünür
         .menu-overlay.active {
             display: block;
         }
         
+        \ header { ... }  --> Sayfadaki üst bölüm kartı: beyaz arkaplan, gölge, iç boşluk
         header {
-            background: white;
+            background: light blue;
             padding: 40px;
             border-radius: 10px;
             margin-bottom: 30px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        \ h1 { ... }  --> Başlık stili
         h1 {
             color: #071345;
             margin-bottom: 10px;
             font-size: 2.5em;
         }
+        \ .subtitle { ... }  --> Alt başlık stili
         .subtitle {
             color: #666;
             font-size: 1.2em;
         }
+        \ section { ... }  --> Sayfa bölümleri (kart görünümü). Başlangıçta gizli display:none
         section {
             background: rgb(249, 246, 246);
             padding: 30px;
@@ -156,16 +182,19 @@
             display: none;
         }
         
+        \ section.active { display:block }  --> Aktif olan bölüm gösterilir
         section.active {
             display: block;
         }
         
+        \ h2 { ... }  --> Bölüm başlıklarının vurgulanması (renk, alt çizgi)
         h2 {
             color: #667eea;
             margin-bottom: 15px;
             border-bottom: 2px solid #667eea;
             padding-bottom: 10px;
         }
+        \ ul, li { ... }  --> Liste stilleri/boşluklar
         ul {
             margin-left: 20px;
             margin-top: 10px;
@@ -173,27 +202,31 @@
         li {
             margin-bottom: 8px;
         }
+        \ .skills-list { ... }  --> Yetenek etiketlerinin yatay düzeni
         .skills-list {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin-top: 15px;
         }
+        \ .skill-tag { ... }  --> Yetenek etiketlerinin görünümü
         .skill-tag {
-            background: #667eea;
+            background: #9c5670;
             color: white;
             padding: 8px 15px;
             border-radius: 20px;
             font-size: 0.9em;
         }
+        \ footer { ... }  --> Alt bilgi (telif vb.) stili, beyaz yazı rengi
         footer {
             text-align: center;
             color: white;
             margin-top: 40px;
             padding: 20px;
         }
+        \ a { ... }  --> Link renkleri ve hover stili
         a {
-            color: #667eea;
+            color: #9bc4a3;
             text-decoration: none;
         }
         a:hover {
@@ -202,44 +235,48 @@
     </style>
 </head>
 <body>
-    <!-- Hamburger Menü Butonu -->
+    \ <!-- Hamburger Menü Butonu -->  --> Sayfanın sağ üstünde kayan menüyü açıp kapatan buton (3 span = 3 çizgi)
     <button class="menu-button" id="menuButton">
+        <span></span>
         <span></span>
         <span></span>
         <span></span>
     </button>
     
-    <!-- Overlay -->
+    \ <!-- Overlay -->  --> Menü açıkken arka planı karartan katman (tıklanınca menüyü kapatmak için)
     <div class="menu-overlay" id="menuOverlay"></div>
     
-    <!-- Sidebar Menü -->
+    \ <!-- Sidebar Menü -->  --> Sağdan kayan navigasyon menüsü; her buton data-section ile hangi bölümü göstereceğini belirtir
     <nav class="sidebar-menu" id="sidebarMenu">
         <ul>
-            <li><button class="menu-item" data-section="home">🏠 Ana Sayfa</button></li>
-            <li><button class="menu-item" data-section="education">🎓 Eğitim</button></li>
-            <li><button class="menu-item" data-section="biography">👤 Biyografi</button></li>
-            <li><button class="menu-item" data-section="skills">💻 Yetenekler</button></li>
-            <li><button class="menu-item" data-section="interests">🎯 İlgi Alanları</button></li>
-            <li><button class="menu-item" data-section="poems">📜 Şiirlerim</button></li>
-            <li><button class="menu-item" data-section="projects">📚 Projeler</button></li>
-            <li><button class="menu-item" data-section="contact">📞 İletişim</button></li>
+            <li><button class="menu-item" data-section="HOME">🏠 Ana Sayfa</button></li>
+            <li><button class="menu-item" data-section="EDUCATION">🎓 Eğitim</button></li>
+            <li><button class="menu-item" data-section="BIOGRAPHY">👤 Biyografi</button></li>
+            <li><button class="menu-item" data-section="SKILLS">💻 Yetenekler</button></li>
+            <li><button class="menu-item" data-section="INTERESTS">🎯 İlgi Alanları</button></li>
+            <li><button class="menu-item" data-section="POEMS">📜 Şiirlerim</button></li>
+            <li><button class="menu-item" data-section="PROJECTS">📚 Projeler</button></li>
+            <li><button class="menu-item" data-section="CONTACT">📞 İletişim</button></li>
         </ul>
     </nav>
 
+    \ <div class="container">  --> Sayfa içeriğinin sarıldığı kapsayıcı
     <div class="container">
         <header>
+            \ <h1>Selam! 👋 Ben Zehra</h1>  --> Ana başlık
             <h1>Selam! 👋 Ben Zehra</h1>
+            \ <p class="subtitle">... </p>  --> Kısa açıklama/alt başlık
             <p class="subtitle">Bilgisayar Mühendisliği Öğrencisi</p>
         </header>
 
-        <!-- Ana Sayfa Bölümü -->
+        \ <!-- Ana Sayfa Bölümü -->  --> id="home", başlangıçta active olduğu için görünür
         <section id="home" class="active">
             <h2>🏠 Ana Sayfa</h2>
             <p>Merhaba! Benim sayfama hoş geldiniz. Sağ üstteki menüyü kullanarak beni daha yakından tanıyabilirsiniz.</p>
             <p style="margin-top: 15px;">Menüden biyografim, yeteneklerim, şiirlerim ve daha birçok bilgiye ulaşabilirsiniz.</p>
         </section>
 
-        <!-- Eğitim Bölümü -->
+        \ <!-- Eğitim Bölümü -->  --> id="education", başlangıçta gizli (aktif değil)
         <section id="education">
             <h2>🎓 Eğitim</h2>
             <p><strong>İstanbul Teknik Üniversitesi (ITU)</strong></p>
@@ -249,15 +286,15 @@
             <p style="margin-top: 15px;">Bilgisayar mühendisliğinin temellerini öğrenirken, yazılım geliştirme ve veri analizi alanlarında kendimi geliştirmeye çalışıyorum.</p>
         </section>
 
-        <!-- Biyografi Bölümü -->
+        \ <!-- Biyografi Bölümü -->  --> id="biography"
         <section id="biography">
             <h2>👤 Biyografi</h2>
             <p>Merhaba! Ben Zehra Akbaş. Konya Meram Fen Lisesinden mezun oldum. 2025 YKS sınavında sayısal alanda 683.oldum. Şuan İstanbul Teknik Üniversitesinde Bilgisayar Mühendisliği okuyorum.</p>
             <p style="margin-top: 15px;">Teknoloji ve yazılım geliştirme ile ilgili yoğun bir ilgim var. Özellikle web geliştirme, veri analizi ve yapay zeka alanlarında kendimi geliştirmek istiyorum.</p>
-            <p style="margin-top: 15px;">Boş zamanlarımda kodlama projelerine çalışıyor ve yeni teknolojileri öğrenmeye çalışıyorum. Ayrıca şiir yazmak da benim ilgi alanlarımdan biridir.</p>
+            <p style="margin-top: 15px;">Boş zamanlarımda kodlama projelerine çalışıyor ve yeni teknolojileri öğrenmeye çalışıyorum. Ayrıca şiir yazmak da benim ilgi alanlarımdan birisidir.</p>
         </section>
 
-        <!-- Yetenekler Bölümü -->
+        \ <!-- Yetenekler Bölümü -->  --> id="skills", etiketler skill-tag ile gösterilir
         <section id="skills">
             <h2>💻 Yetenekler</h2>
             <div class="skills-list">
@@ -267,7 +304,7 @@
             </div>
         </section>
 
-        <!-- İlgi Alanları Bölümü -->
+        \ <!-- İlgi Alanları Bölümü -->  --> id="interests"
         <section id="interests">
             <h2>🎯 İlgi Alanları</h2>
             <ul>
@@ -280,7 +317,7 @@
             </ul>
         </section>
 
-        <!-- Şiirlerim Bölümü -->
+        \ <!-- Şiirlerim Bölümü -->  --> id="poems", bir şiir örneği kart içinde
         <section id="poems">
             <h2>📜 Şiirlerim</h2>
             <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
@@ -296,19 +333,20 @@
             </div>
         </section>
 
-        <!-- Projeler Bölümü -->
+        \ <!-- Projeler Bölümü -->  --> id="projects"
         <section id="projects">
             <h2>📚 Projeler</h2>
             <ul>
                 <li><strong>Kişisel Web Sitesi</strong> - Bu proje! HTML, CSS ve JavaScript ile oluşturulmuş portfolio sitesi.</li>
+                <li><strong>UV ışınları miktarı ile renk değiştiren kumaşa entegre edilmiş sensör projesi (henüz tasarım aşamasında)</strong></li>
                 <li><strong>Diğer projeler yakında eklenecek...</strong></li>
             </ul>
         </section>
 
-        <!-- İletişim Bölümü -->
+        \ <!-- İletişim Bölümü -->  --> id="contact", dış bağlantılar LinkedIn/GitHub
         <section id="contact">
             <h2>📞 İletişim</h2>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/zehra-akbaş-102204378?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">zehra-akbaş-102204378</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/zehra-akbaş-102204378?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">zehra-akbaş-1[...]
             <p style="margin-top: 10px;"><strong>GitHub:</strong> <a href="https://github.com/zehraakbas3401-lang" target="_blank">zehraakbas3401-lang</a></p>
             <p style="margin-top: 15px;">Benimle iletişime geçmek için yukarıdaki linklerimizi kullanabilirsiniz.</p>
         </section>    
@@ -319,47 +357,51 @@
     </div>
 
     <script>
-        // Menü açma/kapama
+        \ // Menü açma/kapama: öğeleri DOM'dan alıyoruz
         const menuButton = document.getElementById('menuButton');
         const sidebarMenu = document.getElementById('sidebarMenu');
         const menuOverlay = document.getElementById('menuOverlay');
         const menuItems = document.querySelectorAll('.menu-item');
 
+        \ // Menü butonuna tıklandığında .active sınıfı toggle edilir -> animasyon, menü göster/gizle
         menuButton.addEventListener('click', () => {
             menuButton.classList.toggle('active');
             sidebarMenu.classList.toggle('active');
             menuOverlay.classList.toggle('active');
         });
 
-        // Overlay'e tıklandığında menüyü kapat
+        \ // Overlay'e tıklandığında menüyü kapat (kullanıcı sayfaya geri dönsün)
         menuOverlay.addEventListener('click', () => {
             menuButton.classList.remove('active');
             sidebarMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
         });
 
-        // Menü öğelerine tıklandığında
+        \ // Menü öğelerine tıklandığında ilgili section gösterilir, diğerleri gizlenir
         menuItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 const sectionId = e.target.getAttribute('data-section');
                 
-                // Tüm bölümleri gizle
+                \ // Tüm bölümleri gizle
                 document.querySelectorAll('section').forEach(section => {
                     section.classList.remove('active');
                 });
                 
-                // Seçilen bölümü göster
+                \ // Seçilen bölümü göster
                 document.getElementById(sectionId).classList.add('active');
                 
-                // Menüyü kapat
+                \ // Menüyü kapat
                 menuButton.classList.remove('active');
                 sidebarMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
                 
-                // Sayfanın üstüne git
+                \ // Sayfanın en üstüne kaydır (kullanıcı yeni bölümün başından başlasın)
                 window.scrollTo(0, 0);
             });
         });
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
