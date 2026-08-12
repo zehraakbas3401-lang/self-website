@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -323,40 +323,45 @@
     </div>
 
     <script>
-        const menuButton = document.getElementById('menuButton');
-        const sidebarMenu = document.getElementById('sidebarMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const menuItems = document.querySelectorAll('.menu-item');
+        // Sayfa tam yüklendiğinde çalıştır
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const sidebarMenu = document.getElementById('sidebarMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuItems = document.querySelectorAll('.menu-item');
 
-        menuButton.addEventListener('click', () => {
-            menuButton.classList.toggle('active');
-            sidebarMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-        });
+            menuButton.addEventListener('click', () => {
+                menuButton.classList.toggle('active');
+                sidebarMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+            });
 
-        menuOverlay.addEventListener('click', () => {
-            menuButton.classList.remove('active');
-            sidebarMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
-
-        menuItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                const sectionId = e.target.getAttribute('data-section');
-                
-                document.querySelectorAll('section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                document.getElementById(sectionId).classList.add('active');
-                
+            menuOverlay.addEventListener('click', () => {
                 menuButton.classList.remove('active');
                 sidebarMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
-                
-                window.scrollTo(0, 0);
+            });
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const sectionId = e.target.getAttribute('data-section');
+                    
+                    document.querySelectorAll('section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    document.getElementById(sectionId).classList.add('active');
+                    
+                    menuButton.classList.remove('active');
+                    sidebarMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    
+                    window.scrollTo(0, 0);
+                });
             });
         });
     </script>
 </body>
 </html>
+  
+         
