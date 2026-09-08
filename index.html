@@ -1,9 +1,11 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zehra - Bilgisayar Mühendisliği</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -45,6 +47,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             transition: background 0.3s;
+            aria-label: "Menüyü aç/kapat";
         }
         
         .menu-button:hover {
@@ -75,8 +78,8 @@
         .sidebar-menu {
             position: fixed;
             top: 0;
-            right: -300px;
-            width: 300px;
+            right: -250px;
+            width: 250px;
             height: 100vh;
             background: #2d5a7b;
             box-shadow: -4px 0 6px rgba(0, 0, 0, 0.2);
@@ -196,6 +199,43 @@
             font-size: 0.9em;
         }
         
+        /* Social Media Icons */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #2d5a7b;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-icon:hover {
+            background: #1a3a52;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-icon.linkedin:hover {
+            background: #0077b5;
+        }
+        
+        .social-icon.github:hover {
+            background: #333333;
+        }
+        
         footer {
             text-align: center;
             color: white;
@@ -211,10 +251,70 @@
         a:hover {
             text-decoration: underline;
         }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar-menu {
+                right: -200px;
+                width: 200px;
+                padding-top: 70px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            section {
+                padding: 20px;
+            }
+            
+            .menu-button {
+                width: 45px;
+                height: 45px;
+                gap: 5px;
+            }
+            
+            .menu-button span {
+                width: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .sidebar-menu {
+                right: -180px;
+                width: 180px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .social-links {
+                gap: 10px;
+            }
+            
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2em;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    <button class="menu-button" id="menuButton">
+    <button class="menu-button" id="menuButton" aria-label="Menüyü aç/kapat">
         <span></span>
         <span></span>
         <span></span>
@@ -319,9 +419,16 @@
 
         <section id="contact">
             <h2>📞 İletişim</h2>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/zehra-akbaş-102204378" target="_blank">zehra-akbaş</a></p>
-            <p style="margin-top: 10px;"><strong>GitHub:</strong> <a href="https://github.com/zehraakbas3401-lang" target="_blank">zehraakbas3401-lang</a></p>
-            <p style="margin-top: 15px;">Benimle iletişime geçmek için yukarıdaki linklerimizi kullanabilirsiniz.</p>
+            <p style="margin-bottom: 20px;">Beni aşağıdaki sosyal ağlarda takip edebilir veya bağlantı kurabilirsiniz:</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/zehra-akbaş-102204378" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/zehraakbas3401-lang" target="_blank" rel="noopener noreferrer" class="social-icon github" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <p style="margin-top: 20px;">Benimle iletişime geçmek için yukarıdaki linklerimizi kullanabilirsiniz.</p>
         </section>    
 
         <footer>
@@ -370,5 +477,3 @@
     </script>
 </body>
 </html>
-  
-         
