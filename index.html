@@ -7,87 +7,343 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            position: relative;
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #2C3E50;
             background:
-                linear-gradient(rgba(10, 27, 43, .48), rgba(10, 27, 43, .48)),
+                linear-gradient(rgba(10, 27, 43, 0.55), rgba(10, 27, 43, 0.55)),
                 url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQllgQuEwHlxPm1gyBoc5stAK1dF_SFFsh4uBepxs99ZGB9w2pp00W7CJA&s=10") center center / cover fixed no-repeat;
             min-height: 100vh;
         }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; position: relative; }
-        .menu-button { position: fixed; top: 20px; right: 20px; background: white; border: none; width: 50px; height: 50px; cursor: pointer; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; box-shadow: 0 4px 6px rgba(0,0,0,.2); z-index: 1000; transition: background .3s; }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(1px);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,.2);
+            z-index: 1000;
+            transition: background .3s;
+        }
+
         .menu-button:hover { background: #f0f0f0; }
-        .menu-button span { width: 25px; height: 3px; background: #1a3a52; border-radius: 2px; transition: all .3s; }
+        .menu-button span {
+            width: 25px;
+            height: 3px;
+            background: #1a3a52;
+            border-radius: 2px;
+            transition: all .3s;
+        }
         .menu-button.active span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
         .menu-button.active span:nth-child(2) { opacity: 0; }
         .menu-button.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
-        .sidebar-menu { position: fixed; top: 0; right: -250px; width: 250px; height: 100vh; background: #2d5a7b; box-shadow: -4px 0 6px rgba(0,0,0,.2); transition: right .3s ease; z-index: 999; overflow-y: auto; padding-top: 80px; }
+
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100vh;
+            background: rgba(45, 90, 123, 0.97);
+            box-shadow: -4px 0 6px rgba(0,0,0,.2);
+            transition: right .3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            padding-top: 80px;
+        }
         .sidebar-menu.active { right: 0; }
         .sidebar-menu ul { list-style: none; margin: 0; }
         .sidebar-menu li { border-bottom: 1px solid rgba(255,255,255,.2); }
-        .sidebar-menu button { width: 100%; padding: 15px 20px; background: none; border: none; text-align: left; cursor: pointer; font-size: 1em; color: #fff; transition: background .3s; font-weight: 500; }
+        .sidebar-menu button {
+            width: 100%;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+            color: #fff;
+            transition: background .3s;
+            font-weight: 500;
+        }
         .sidebar-menu button:hover { background: rgba(255,255,255,.1); color: #b0d4f0; }
-        .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; z-index: 998; }
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.5);
+            display: none;
+            z-index: 998;
+        }
         .menu-overlay.active { display: block; }
-        header { background: rgba(135,206,235,.94); padding: 40px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,.15); }
-        h1 { color: #1a3a52; margin-bottom: 10px; font-size: 2.5em; }
+
+        header {
+            background: rgba(135, 206, 235, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,.15);
+            border: 1px solid rgba(255,255,255,.25);
+        }
+
+        h1 {
+            color: #1a3a52;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
         .subtitle { color: #2d5a7b; font-size: 1.2em; }
-        section { background: rgba(245,248,250,.96); padding: 30px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,.1); display: none; }
+
+        section {
+            background: rgba(245, 248, 250, 0.94);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            display: none;
+            border: 1px solid rgba(255,255,255,.35);
+        }
         section.active { display: block; }
-        h2 { color: #1a3a52; margin-bottom: 15px; border-bottom: 2px solid #2d5a7b; padding-bottom: 10px; }
+
+        h2 {
+            color: #1a3a52;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2d5a7b;
+            padding-bottom: 10px;
+        }
         ul { margin-left: 20px; margin-top: 10px; }
         li { margin-bottom: 8px; }
+
         .skills-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .skill-tag { background: #2d5a7b; color: white; padding: 8px 15px; border-radius: 20px; font-size: .9em; }
+        .skill-tag {
+            background: #2d5a7b;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: .9em;
+        }
+
         .social-links { display: flex; gap: 15px; margin-top: 20px; justify-content: center; }
-        .social-icon { display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: #2d5a7b; color: white; border-radius: 50%; text-decoration: none; font-size: 1.5em; transition: all .3s ease; box-shadow: 0 2px 4px rgba(0,0,0,.2); }
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #2d5a7b;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: all .3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,.2);
+        }
         .social-icon:hover { background: #1a3a52; transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,.3); }
         .social-icon.linkedin:hover { background: #0077b5; }
         .social-icon.github:hover { background: #333; }
-        footer { text-align: center; color: white; margin-top: 40px; padding: 20px; }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,.5);
+        }
+
         a { color: #4a9fb5; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        @media (max-width: 768px) { .sidebar-menu { right: -200px; width: 200px; padding-top: 70px; } h1 { font-size: 1.8em; } header { padding: 30px 20px; } section { padding: 20px; } .menu-button { width: 45px; height: 45px; gap: 5px; } .menu-button span { width: 20px; } }
-        @media (max-width: 480px) { .sidebar-menu { right: -180px; width: 180px; } h1 { font-size: 1.5em; } .social-links { gap: 10px; } .social-icon { width: 45px; height: 45px; font-size: 1.2em; } .container { padding: 15px; } header { padding: 20px 15px; } }
+
+        @media (max-width: 768px) {
+            .sidebar-menu { right: -200px; width: 200px; padding-top: 70px; }
+            h1 { font-size: 1.8em; }
+            header { padding: 30px 20px; }
+            section { padding: 20px; }
+            .menu-button { width: 45px; height: 45px; gap: 5px; }
+            .menu-button span { width: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar-menu { right: -180px; width: 180px; }
+            h1 { font-size: 1.5em; }
+            .social-links { gap: 10px; }
+            .social-icon { width: 45px; height: 45px; font-size: 1.2em; }
+            .container { padding: 15px; }
+            header { padding: 20px 15px; }
+        }
     </style>
 </head>
 <body>
     <button class="menu-button" id="menuButton" aria-label="Menüyü aç/kapat"><span></span><span></span><span></span></button>
     <div class="menu-overlay" id="menuOverlay"></div>
-    <nav class="sidebar-menu" id="sidebarMenu"><ul>
-        <li><button class="menu-item" data-section="home">🏠 Ana Sayfa</button></li>
-        <li><button class="menu-item" data-section="education">🎓 Eğitim</button></li>
-        <li><button class="menu-item" data-section="biography">👤 Biyografi</button></li>
-        <li><button class="menu-item" data-section="skills">💻 Yetenekler</button></li>
-        <li><button class="menu-item" data-section="interests">🎯 İlgi Alanları</button></li>
-        <li><button class="menu-item" data-section="poems">📜 Şiirlerim</button></li>
-        <li><button class="menu-item" data-section="projects">📚 Projeler</button></li>
-        <li><button class="menu-item" data-section="contact">📞 İletişim</button></li>
-    </ul></nav>
+    <nav class="sidebar-menu" id="sidebarMenu">
+        <ul>
+            <li><button class="menu-item" data-section="home">🏠 Ana Sayfa</button></li>
+            <li><button class="menu-item" data-section="education">🎓 Eğitim</button></li>
+            <li><button class="menu-item" data-section="biography">👤 Biyografi</button></li>
+            <li><button class="menu-item" data-section="skills">💻 Yetenekler</button></li>
+            <li><button class="menu-item" data-section="interests">🎯 İlgi Alanları</button></li>
+            <li><button class="menu-item" data-section="poems">📜 Şiirlerim</button></li>
+            <li><button class="menu-item" data-section="projects">📚 Projeler</button></li>
+            <li><button class="menu-item" data-section="contact">📞 İletişim</button></li>
+        </ul>
+    </nav>
+
     <div class="container">
-        <header><h1>Selam! 👋 Ben Zehra</h1><p class="subtitle">Bilgisayar Mühendisliği Öğrencisi</p></header>
-        <section id="home" class="active"><h2>🏠 Ana Sayfa</h2><p>Merhaba! Benim sayfama hoş geldiniz. Sağ üstteki menüyü kullanarak beni daha yakından tanıyabilirsiniz.</p><p style="margin-top:15px">Menüden biyografim, yeteneklerim, şiirlerim ve daha birçok bilgiye ulaşabilirsiniz.</p></section>
-        <section id="education"><h2>🎓 Eğitim</h2><p><strong>İstanbul Teknik Üniversitesi (ITU)</strong></p><p>Bilgisayar Mühendisliği Bölümü</p><p style="margin-top:15px"><strong>Başlangıç Tarihi: 2025</strong></p><p><strong>Durum: 1. sınıf</strong></p><p style="margin-top:15px">Bilgisayar mühendisliğinin temellerini öğrenirken, yazılım geliştirme ve veri analizi alanlarında kendimi geliştirmeye çalışıyorum.</p></section>
-        <section id="biography"><h2>👤 Biyografi</h2><p>Merhaba! Ben Zehra Akbaş. Konya Meram Fen Lisesinden mezun oldum. 2025 YKS sınavında sayısal alanda 683. oldum. Şu an İstanbul Teknik Üniversitesinde Bilgisayar Mühendisliği okuyorum.</p><p style="margin-top:15px">Teknoloji ve yazılım geliştirme ile ilgili yoğun bir ilgim var. Özellikle web geliştirme, veri analizi ve yapay zeka alanlarında kendimi geliştirmeye çalışıyorum.</p><p style="margin-top:15px">Boş zamanlarımda kodlama projeleri üzerinde çalışıyor ve yeni teknolojileri öğreniyorum. Ayrıca şiir yazmak da ilgi alanlarımdan biridir.</p></section>
-        <section id="skills"><h2>💻 Yetenekler</h2><div class="skills-list"><span class="skill-tag">HTML</span><span class="skill-tag">Python</span><span class="skill-tag">Web Tasarım</span></div></section>
-        <section id="interests"><h2>🎯 İlgi Alanları</h2><ul><li>Web Geliştirme</li><li>Yazılım Mühendisliği</li><li>Veri Analizi</li><li>Yapay Zeka ve Makine Öğrenmesi</li><li>Şiir Yazarlığı</li><li>Yaratıcı Yazma</li></ul></section>
-        <section id="poems"><h2>📜 Şiirlerim</h2><div style="background:white;padding:20px;border-radius:8px;margin-bottom:20px"><h3 style="color:#2d5a7b;margin-bottom:10px">Titrek Sanatçı</h3><p style="line-height:1.8;font-style:italic">Özlemim taşmayı bilmeyen bir gözyaşı gibidir<br>Kaçtığım geçmişte derin kuyular onda belirir<br>Perişan olan bakışım her dem devadır aksime,<br>Bir yansıma, körleşmiş gerçeği sunar fecrime.<br>Mahal yok aynaya bakmama, beni çözmek için,<br>Halim bertaraf edilir, düşünce damla dizin dizin...</p><hr style="margin:20px 0;border:none;border-top:1px solid #2d5a7b"><h3 style="color:#2d5a7b;margin-bottom:10px">Yalın Yalnızlık</h3><p style="line-height:1.8;font-style:italic">Zamanın kıyısında asılı bir gözyaşım,<br>Evvelden beridir tarihi yıpratışım,<br>Bu kaçıncı mesel, artık yok bir çağrışım.<br>Ruh ile bedenin raksı gibi bir karışım...</p></div></section>
-        <section id="projects"><h2>📚 Projeler</h2><ul><li><strong>Kişisel Web Sitesi</strong> - HTML, CSS ve JavaScript ile oluşturulmuş portfolio sitesi.</li><li><strong>UV ışınları miktarı ile renk değiştiren kumaşa entegre edilmiş sensör projesi</strong> - henüz tasarım aşamasında</li><li><strong>Diğer projeler yakında eklenecek...</strong></li></ul></section>
-        <section id="contact"><h2>📞 İletişim</h2><p style="margin-bottom:20px">Beni aşağıdaki sosyal ağlarda takip edebilir veya benimle bağlantı kurabilirsiniz:</p><div class="social-links"><a href="https://www.linkedin.com/in/zehra-akbaş-102204378" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://github.com/zehraakbas3401-lang" target="_blank" rel="noopener noreferrer" class="social-icon github" aria-label="GitHub"><i class="fab fa-github"></i></a></div><p style="margin-top:20px">Benimle iletişime geçmek için yukarıdaki logoları kullanabilirsiniz.</p></section>
-        <footer><p>&copy; 2026 Zehra. Tüm Hakları Saklıdır.</p></footer>
+        <header>
+            <h1>Selam! 👋 Ben Zehra</h1>
+            <p class="subtitle">Bilgisayar Mühendisliği Öğrencisi</p>
+        </header>
+
+        <section id="home" class="active">
+            <h2>🏠 Ana Sayfa</h2>
+            <p>Merhaba! Benim sayfama hoş geldiniz. Sağ üstteki menüyü kullanarak beni daha yakından tanıyabilirsiniz.</p>
+            <p style="margin-top:15px">Menüden biyografim, yeteneklerim, şiirlerim ve daha birçok bilgiye ulaşabilirsiniz.</p>
+        </section>
+
+        <section id="education">
+            <h2>🎓 Eğitim</h2>
+            <p><strong>İstanbul Teknik Üniversitesi (ITU)</strong></p>
+            <p>Bilgisayar Mühendisliği Bölümü</p>
+            <p style="margin-top:15px"><strong>Başlangıç Tarihi: 2025</strong></p>
+            <p><strong>Durum: 1. sınıf</strong></p>
+            <p style="margin-top:15px">Bilgisayar mühendisliğinin temellerini öğrenirken, yazılım geliştirme ve veri analizi alanlarında kendimi geliştirmeye çalışıyorum.</p>
+        </section>
+
+        <section id="biography">
+            <h2>👤 Biyografi</h2>
+            <p>Merhaba! Ben Zehra Akbaş. Konya Meram Fen Lisesinden mezun oldum. 2025 YKS sınavında sayısal alanda 683. oldum. Şu an İstanbul Teknik Üniversitesinde Bilgisayar Mühendisliği okuyorum.</p>
+            <p style="margin-top:15px">Teknoloji ve yazılım geliştirme ile ilgili yoğun bir ilgim var. Özellikle web geliştirme, veri analizi ve yapay zeka alanlarında kendimi geliştirmeye çalışıyorum.</p>
+            <p style="margin-top:15px">Boş zamanlarımda kodlama projeleri üzerinde çalışıyor ve yeni teknolojileri öğreniyorum. Ayrıca şiir yazmak da ilgi alanlarımdan biridir.</p>
+        </section>
+
+        <section id="skills">
+            <h2>💻 Yetenekler</h2>
+            <div class="skills-list">
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Web Tasarım</span>
+            </div>
+        </section>
+
+        <section id="interests">
+            <h2>🎯 İlgi Alanları</h2>
+            <ul>
+                <li>Web Geliştirme</li>
+                <li>Yazılım Mühendisliği</li>
+                <li>Veri Analizi</li>
+                <li>Yapay Zeka ve Makine Öğrenmesi</li>
+                <li>Şiir Yazarlığı</li>
+                <li>Yaratıcı Yazma</li>
+            </ul>
+        </section>
+
+        <section id="poems">
+            <h2>📜 Şiirlerim</h2>
+            <div style="background:white;padding:20px;border-radius:8px;margin-bottom:20px">
+                <h3 style="color:#2d5a7b;margin-bottom:10px">Titrek Sanatçı</h3>
+                <p style="line-height:1.8;font-style:italic">
+                   Özlemim taşmayı bilmeyen bir gözyaşı gibidir<br>
+                   Kaçtığım geçmişte derin kuyular onda belirir<br>
+                   Perişan olan bakışım her dem devadır aksime,<br>
+                   Bir yansıma, körleşmiş gerçeği sunar fecrime.<br>
+                   Mahal yok aynaya bakmama, beni çözmek için,<br>
+                   Halim bertaraf edilir, düşünce damla dizin dizin...
+                </p>
+                <hr style="margin:20px 0;border:none;border-top:1px solid #2d5a7b;">
+                <h3 style="color:#2d5a7b;margin-bottom:10px">Yalın Yalnızlık</h3>
+                <p style="line-height:1.8;font-style:italic">
+                    Zamanın kıyısında asılı bir gözyaşım,<br>
+                    Evvelden beridir tarihi yıpratışım,<br>
+                    Bu kaçıncı mesel, artık yok bir çağrışım.<br>
+                    Ruh ile bedenin raksı gibi bir karışım...
+                </p>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>📚 Projeler</h2>
+            <ul>
+                <li><strong>Kişisel Web Sitesi</strong> - HTML, CSS ve JavaScript ile oluşturulmuş portfolio sitesi.</li>
+                <li><strong>UV ışınları miktarı ile renk değiştiren kumaşa entegre edilmiş sensör projesi</strong> - henüz tasarım aşamasında</li>
+                <li><strong>Diğer projeler yakında eklenecek...</strong></li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>📞 İletişim</h2>
+            <p style="margin-bottom:20px">Beni aşağıdaki sosyal ağlarda takip edebilir veya benimle bağlantı kurabilirsiniz:</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/zehra-akbaş-102204378" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/zehraakbas3401-lang" target="_blank" rel="noopener noreferrer" class="social-icon github" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <p style="margin-top:20px">Benimle iletişime geçmek için yukarıdaki logoları kullanabilirsiniz.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Zehra. Tüm Hakları Saklıdır.</p>
+        </footer>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuButton = document.getElementById('menuButton');
             const sidebarMenu = document.getElementById('sidebarMenu');
             const menuOverlay = document.getElementById('menuOverlay');
-            const closeMenu = () => { menuButton.classList.remove('active'); sidebarMenu.classList.remove('active'); menuOverlay.classList.remove('active'); };
-            menuButton.addEventListener('click', () => { menuButton.classList.toggle('active'); sidebarMenu.classList.toggle('active'); menuOverlay.classList.toggle('active'); });
+            const closeMenu = () => {
+                menuButton.classList.remove('active');
+                sidebarMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+            };
+
+            menuButton.addEventListener('click', () => {
+                menuButton.classList.toggle('active');
+                sidebarMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+            });
+
             menuOverlay.addEventListener('click', closeMenu);
-            document.querySelectorAll('.menu-item').forEach(item => item.addEventListener('click', e => { document.querySelectorAll('section').forEach(section => section.classList.remove('active')); document.getElementById(e.currentTarget.dataset.section).classList.add('active'); closeMenu(); window.scrollTo(0, 0); }));
+
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', e => {
+                    document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
+                    document.getElementById(e.currentTarget.dataset.section).classList.add('active');
+                    closeMenu();
+                    window.scrollTo(0, 0);
+                });
+            });
         });
     </script>
 </body>
