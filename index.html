@@ -33,6 +33,44 @@
             z-index: -1;
         }
 
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,.2);
+        }
+
+        .lang-btn {
+            background: none;
+            border: 2px solid #1a3a52;
+            color: #1a3a52;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all .3s;
+        }
+
+        .lang-btn.active {
+            background: #1a3a52;
+            color: white;
+        }
+
+        .lang-btn:hover {
+            background: rgba(26, 58, 82, 0.1);
+        }
+
+        .lang-btn.active:hover {
+            background: #1a3a52;
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -187,6 +225,15 @@
         a:hover { text-decoration: underline; }
 
         @media (max-width: 768px) {
+            .language-switcher {
+                left: 10px;
+                top: 10px;
+                padding: 6px 8px;
+            }
+            .lang-btn {
+                padding: 5px 10px;
+                font-size: 0.8em;
+            }
             .sidebar-menu { right: -200px; width: 200px; padding-top: 70px; }
             h1 { font-size: 1.8em; }
             header { padding: 30px 20px; }
@@ -196,6 +243,15 @@
         }
 
         @media (max-width: 480px) {
+            .language-switcher {
+                left: 8px;
+                top: 8px;
+                gap: 5px;
+            }
+            .lang-btn {
+                padding: 4px 8px;
+                font-size: 0.75em;
+            }
             .sidebar-menu { right: -180px; width: 180px; }
             h1 { font-size: 1.5em; }
             .social-links { gap: 10px; }
@@ -206,127 +262,177 @@
     </style>
 </head>
 <body>
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="tr">Türkçe</button>
+        <button class="lang-btn" data-lang="en">English</button>
+    </div>
+
     <button class="menu-button" id="menuButton" aria-label="Menüyü aç/kapat"><span></span><span></span><span></span></button>
     <div class="menu-overlay" id="menuOverlay"></div>
     <nav class="sidebar-menu" id="sidebarMenu">
         <ul>
-            <li><button class="menu-item" data-section="home">🏠 Ana Sayfa</button></li>
-            <li><button class="menu-item" data-section="education">🎓 Eğitim</button></li>
-            <li><button class="menu-item" data-section="biography">👤 Biyografi</button></li>
-            <li><button class="menu-item" data-section="skills">💻 Yetenekler</button></li>
-            <li><button class="menu-item" data-section="interests">🎯 İlgi Alanları</button></li>
-            <li><button class="menu-item" data-section="poems">📜 Şiirlerim</button></li>
-            <li><button class="menu-item" data-section="projects">📚 Projeler</button></li>
-            <li><button class="menu-item" data-section="contact">📞 İletişim</button></li>
+            <li><button class="menu-item" data-section="home"><span class="tr">🏠 Ana Sayfa</span><span class="en" style="display:none;">🏠 Home</span></button></li>
+            <li><button class="menu-item" data-section="education"><span class="tr">🎓 Eğitim</span><span class="en" style="display:none;">🎓 Education</span></button></li>
+            <li><button class="menu-item" data-section="biography"><span class="tr">👤 Biyografi</span><span class="en" style="display:none;">👤 Biography</span></button></li>
+            <li><button class="menu-item" data-section="skills"><span class="tr">💻 Yetenekler</span><span class="en" style="display:none;">💻 Skills</span></button></li>
+            <li><button class="menu-item" data-section="interests"><span class="tr">🎯 İlgi Alanları</span><span class="en" style="display:none;">🎯 Interests</span></button></li>
+            <li><button class="menu-item" data-section="poems"><span class="tr">📜 Şiirlerim</span><span class="en" style="display:none;">📜 Poems</span></button></li>
+            <li><button class="menu-item" data-section="projects"><span class="tr">📚 Projeler</span><span class="en" style="display:none;">📚 Projects</span></button></li>
+            <li><button class="menu-item" data-section="contact"><span class="tr">📞 İletişim</span><span class="en" style="display:none;">📞 Contact</span></button></li>
         </ul>
     </nav>
 
     <div class="container">
         <header>
-            <h1>Selam! 👋 Ben Zehra</h1>
-            <p class="subtitle">Bilgisayar Mühendisliği Öğrencisi</p>
+            <h1><span class="tr">Selam! 👋 Ben Zehra</span><span class="en" style="display:none;">Hello! 👋 I'm Zehra</span></h1>
+            <p class="subtitle"><span class="tr">Bilgisayar Mühendisliği Öğrencisi</span><span class="en" style="display:none;">Computer Engineering Student</span></p>
         </header>
 
         <section id="home" class="active">
-            <h2>🏠 Ana Sayfa</h2>
-            <p>Merhaba! Benim sayfama hoş geldiniz. Sağ üstteki menüyü kullanarak beni daha yakından tanıyabilirsiniz.</p>
-            <p style="margin-top:15px">Menüden biyografim, yeteneklerim, şiirlerim ve daha birçok bilgiye ulaşabilirsiniz.</p>
+            <h2><span class="tr">🏠 Ana Sayfa</span><span class="en" style="display:none;">🏠 Home</span></h2>
+            <p><span class="tr">Merhaba! Benim sayfama hoş geldiniz. Sağ üstteki menüyü kullanarak beni daha yakından tanıyabilirsiniz.</span><span class="en" style="display:none;">Hello! Welcome to my page. You can get to know me better by using the menu in the top right.</span></p>
+            <p style="margin-top:15px"><span class="tr">Menüden biyografim, yeteneklerim, şiirlerim ve daha birçok bilgiye ulaşabilirsiniz.</span><span class="en" style="display:none;">From the menu, you can access my biography, skills, poems, and much more information.</span></p>
         </section>
 
         <section id="education">
-            <h2>🎓 Eğitim</h2>
-            <p><strong>İstanbul Teknik Üniversitesi (ITU)</strong></p>
-            <p>Bilgisayar Mühendisliği Bölümü</p>
-            <p style="margin-top:15px"><strong>Başlangıç Tarihi: 2025</strong></p>
-            <p><strong>Durum: 1. sınıf</strong></p>
-            <p style="margin-top:15px">Bilgisayar mühendisliğinin temellerini öğrenirken, yazılım geliştirme ve veri analizi alanlarında kendimi geliştirmeye çalışıyorum.</p>
+            <h2><span class="tr">🎓 Eğitim</span><span class="en" style="display:none;">🎓 Education</span></h2>
+            <p><strong><span class="tr">İstanbul Teknik Üniversitesi (ITU)</span><span class="en" style="display:none;">Istanbul Technical University (ITU)</span></strong></p>
+            <p><span class="tr">Bilgisayar Mühendisliği Bölümü</span><span class="en" style="display:none;">Computer Engineering Department</span></p>
+            <p style="margin-top:15px"><strong><span class="tr">Başlangıç Tarihi: 2025</span><span class="en" style="display:none;">Start Date: 2025</span></strong></p>
+            <p><strong><span class="tr">Durum: 1. sınıf</span><span class="en" style="display:none;">Status: 1st Year</span></strong></p>
+            <p style="margin-top:15px"><span class="tr">Bilgisayar mühendisliğinin temellerini öğrenirken, yazılım geliştirme ve veri analizi alanlarında kendimi geliştirmeye çalışıyorum.</span><span class="en" style="display:none;">While learning the fundamentals of computer engineering, I am developing myself in software development and data analysis.</span></p>
         </section>
 
         <section id="biography">
-            <h2>👤 Biyografi</h2>
-            <p>Merhaba! Ben Zehra Akbaş. Konya Meram Fen Lisesinden mezun oldum. 2025 YKS sınavında sayısal alanda 683. oldum. Şu an İstanbul Teknik Üniversitesinde Bilgisayar Mühendisliği okuyorum.</p>
-            <p style="margin-top:15px">Teknoloji ve yazılım geliştirme ile ilgili yoğun bir ilgim var. Özellikle web geliştirme, veri analizi ve yapay zeka alanlarında kendimi geliştirmeye çalışıyorum.</p>
-            <p style="margin-top:15px">Boş zamanlarımda kodlama projeleri üzerinde çalışıyor ve yeni teknolojileri öğreniyorum. Ayrıca şiir yazmak da ilgi alanlarımdan biridir.</p>
+            <h2><span class="tr">👤 Biyografi</span><span class="en" style="display:none;">👤 Biography</span></h2>
+            <p><span class="tr">Merhaba! Ben Zehra Akbaş. Konya Meram Fen Lisesinden mezun oldum. 2025 YKS sınavında sayısal alanda 683. oldum. Şu an İstanbul Teknik Üniversitesinde Bilgisayar Mühendisliği öğrencisiyim.</span><span class="en" style="display:none;">Hello! I am Zehra Akbaş. I graduated from Konya Meram Science High School. I ranked 683rd in the numerical section of the 2025 YKS exam. I am currently a Computer Engineering student at Istanbul Technical University.</span></p>
+            <p style="margin-top:15px"><span class="tr">Teknoloji ve yazılım geliştirme ile ilgili yoğun bir ilgim var. Özellikle web geliştirme, veri analizi ve yapay zeka alanlarında kendimi geliştirmeye çalışıyorum.</span><span class="en" style="display:none;">I have a strong interest in technology and software development. I am particularly focused on developing myself in web development, data analysis, and artificial intelligence.</span></p>
+            <p style="margin-top:15px"><span class="tr">Boş zamanlarımda kodlama projeleri üzerinde çalışıyor ve yeni teknolojileri öğreniyorum. Ayrıca şiir yazmak da ilgi alanlarımdan biridir.</span><span class="en" style="display:none;">In my free time, I work on coding projects and learn new technologies. Poetry writing is also one of my interests.</span></p>
         </section>
 
         <section id="skills">
-            <h2>💻 Yetenekler</h2>
+            <h2><span class="tr">💻 Yetenekler</span><span class="en" style="display:none;">💻 Skills</span></h2>
             <div class="skills-list">
                 <span class="skill-tag">HTML</span>
                 <span class="skill-tag">Python</span>
-                <span class="skill-tag">Web Tasarım</span>
+                <span class="skill-tag"><span class="tr">Web Tasarım</span><span class="en" style="display:none;">Web Design</span></span>
             </div>
         </section>
 
         <section id="interests">
-            <h2>🎯 İlgi Alanları</h2>
+            <h2><span class="tr">🎯 İlgi Alanları</span><span class="en" style="display:none;">🎯 Interests</span></h2>
             <ul>
-                <li>Web Geliştirme</li>
-                <li>Yazılım Mühendisliği</li>
-                <li>Veri Analizi</li>
-                <li>Yapay Zeka ve Makine Öğrenmesi</li>
-                <li>Şiir Yazarlığı</li>
-                <li>Yaratıcı Yazma</li>
+                <li><span class="tr">Web Geliştirme</span><span class="en" style="display:none;">Web Development</span></li>
+                <li><span class="tr">Yazılım Mühendisliği</span><span class="en" style="display:none;">Software Engineering</span></li>
+                <li><span class="tr">Veri Analizi</span><span class="en" style="display:none;">Data Analysis</span></li>
+                <li><span class="tr">Yapay Zeka ve Makine Öğrenmesi</span><span class="en" style="display:none;">Artificial Intelligence and Machine Learning</span></li>
+                <li><span class="tr">Şiir Yazarlığı</span><span class="en" style="display:none;">Poetry Writing</span></li>
+                <li><span class="tr">Yaratıcı Yazma</span><span class="en" style="display:none;">Creative Writing</span></li>
             </ul>
         </section>
 
         <section id="poems">
-            <h2>📜 Şiirlerim</h2>
+            <h2><span class="tr">📜 Şiirlerim</span><span class="en" style="display:none;">📜 My Poems</span></h2>
             <div style="background:white;padding:20px;border-radius:8px;margin-bottom:20px">
-                <h3 style="color:#2d5a7b;margin-bottom:10px">Titrek Sanatçı</h3>
+                <h3 style="color:#2d5a7b;margin-bottom:10px"><span class="tr">Titrek Sanatçı</span><span class="en" style="display:none;">Trembling Artist</span></h3>
                 <p style="line-height:1.8;font-style:italic">
-                   Özlemim taşmayı bilmeyen bir gözyaşı gibidir<br>
+                   <span class="tr">Özlemim taşmayı bilmeyen bir gözyaşı gibidir<br>
                    Kaçtığım geçmişte derin kuyular onda belirir<br>
                    Perişan olan bakışım her dem devadır aksime,<br>
                    Bir yansıma, körleşmiş gerçeği sunar fecrime.<br>
                    Mahal yok aynaya bakmama, beni çözmek için,<br>
-                   Halim bertaraf edilir, düşünce damla dizin dizin...
+                   Halim bertaraf edilir, düşünce damla dizin dizin...</span>
+                   <span class="en" style="display:none;">My longing is like a tear that never ceases to fall<br>
+                   In the past I fled, deep wells appear in it<br>
+                   My distressed gaze is always a remedy against me,<br>
+                   A reflection, presenting blinded reality to my disgrace.<br>
+                   There is no room for me not to look in the mirror, to understand myself,<br>
+                   My state is set aside, thoughts drop by drop in a row...</span>
                 </p>
                 <hr style="margin:20px 0;border:none;border-top:1px solid #2d5a7b;">
-                <h3 style="color:#2d5a7b;margin-bottom:10px">Yalın Yalnızlık</h3>
+                <h3 style="color:#2d5a7b;margin-bottom:10px"><span class="tr">Yalın Yalnızlık</span><span class="en" style="display:none;">Bare Loneliness</span></h3>
                 <p style="line-height:1.8;font-style:italic">
-                    Zamanın kıyısında asılı bir gözyaşım,<br>
+                    <span class="tr">Zamanın kıyısında asılı bir gözyaşım,<br>
                     Evvelden beridir tarihi yıpratışım,<br>
                     Bu kaçıncı mesel, artık yok bir çağrışım.<br>
-                    Ruh ile bedenin raksı gibi bir karışım...
+                    Ruh ile bedenin raksı gibi bir karışım...</span>
+                    <span class="en" style="display:none;">A tear hanging on the edge of time,<br>
+                    My history has worn away since ancient times,<br>
+                    What is this topic again, there is no more association.<br>
+                    A mixture like a dance between soul and body...</span>
                 </p>
                 <hr style="margin:20px 0;border:none;border-top:1px solid #2d5a7b;">
-                <h3 style="color:#2d5a7b;margin-bottom:10px">Benlik</h3>
+                <h3 style="color:#2d5a7b;margin-bottom:10px"><span class="tr">Benlik</span><span class="en" style="display:none;">Self</span></h3>
                 <p style="line-height:1.8;font-style:italic">
-                    Bir çocuk gülüşünde bulur aslım kendini,<br>
+                    <span class="tr">Bir çocuk gülüşünde bulur aslım kendini,<br>
                     Bir gün ışığında biterken ay çiçekleri<br>
                     Yaşama umudum hindibalarda saklansın<br>
-                    Hırçın rüzgarın elinde bir hiç olmasın.
+                    Hırçın rüzgarın elinde bir hiç olmasın.</span>
+                    <span class="en" style="display:none;">I find my essence in a child's smile,<br>
+                    Moon flowers end in daylight<br>
+                    Let my hope for life be hidden in dandelions<br>
+                    Let it not be nothing in the hands of the fierce wind.</span>
                 </p> 
             </div>
         </section>
 
         <section id="projects">
-            <h2>📚 Projeler</h2>
+            <h2><span class="tr">📚 Projeler</span><span class="en" style="display:none;">📚 Projects</span></h2>
             <ul>
-                <li><strong>Kişisel Web Sitesi</strong> - HTML, CSS ve JavaScript ile oluşturulmuş portfolio sitesi.</li>
-                <li><strong>UV ışınları miktarı ile renk değiştiren kumaşa entegre edilmiş sensör projesi</strong> - henüz tasarım aşamasında</li>
-                <li><strong>Diğer projeler yakında eklenecek...</strong></li>
+                <li><strong><span class="tr">Kişisel Web Sitesi</span><span class="en" style="display:none;">Personal Website</span></strong> - <span class="tr">HTML, CSS ve JavaScript ile oluşturulmuş portfolio sitesi.</span><span class="en" style="display:none;">Portfolio website created with HTML, CSS, and JavaScript.</span></li>
+                <li><strong><span class="tr">UV ışınları miktarı ile renk değiştiren kumaşa entegre edilmiş sensör projesi</span><span class="en" style="display:none;">Sensor Project Integrated with Fabric that Changes Color with UV Light Intensity</span></strong> - <span class="tr">henüz tasarım aşamasında</span><span class="en" style="display:none;">currently in design phase</span></li>
+                <li><strong><span class="tr">Diğer projeler yakında eklenecek...</span><span class="en" style="display:none;">Other projects coming soon...</span></strong></li>
             </ul>
         </section>
 
         <section id="contact">
-            <h2>📞 İletişim</h2>
-            <p style="margin-bottom:20px">Beni aşağıdaki sosyal ağlarda takip edebilir veya benimle bağlantı kurabilirsiniz:</p>
+            <h2><span class="tr">📞 İletişim</span><span class="en" style="display:none;">📞 Contact</span></h2>
+            <p style="margin-bottom:20px"><span class="tr">Beni aşağıdaki sosyal ağlarda takip edebilir veya benimle bağlantı kurabilirsiniz:</span><span class="en" style="display:none;">You can follow me or contact me on the social networks below:</span></p>
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/zehra-akbaş-102204378" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://github.com/zehraakbas3401-lang" target="_blank" rel="noopener noreferrer" class="social-icon github" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
-            <p style="margin-top:20px">Benimle iletişime geçmek için yukarıdaki logoları kullanabilirsiniz.</p>
+            <p style="margin-top:20px"><span class="tr">Benimle iletişime geçmek için yukarıdaki logoları kullanabilirsiniz.</span><span class="en" style="display:none;">You can use the logos above to contact me.</span></p>
         </section>
 
         <footer>
-            <p>&copy; 2026 Zehra. Tüm Hakları Saklıdır.</p>
+            <p>&copy; 2026 Zehra. <span class="tr">Tüm Hakları Saklıdır.</span><span class="en" style="display:none;">All Rights Reserved.</span></p>
         </footer>
     </div>
 
     <script>
+        let currentLang = 'tr';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+
+            document.querySelectorAll('.tr, .en').forEach(el => {
+                if ((el.classList.contains('tr') && lang === 'tr') || 
+                    (el.classList.contains('en') && lang === 'en')) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        const savedLang = localStorage.getItem('preferredLanguage') || 'tr';
+        switchLanguage(savedLang);
+
         document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    switchLanguage(btn.dataset.lang);
+                });
+            });
+
             const menuButton = document.getElementById('menuButton');
             const sidebarMenu = document.getElementById('sidebarMenu');
             const menuOverlay = document.getElementById('menuOverlay');
