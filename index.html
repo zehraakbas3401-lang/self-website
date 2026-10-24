@@ -298,6 +298,40 @@
         .social-icon.linkedin:hover { background: linear-gradient(135deg, #0a66c2, #004182); }
         .social-icon.github:hover { background: linear-gradient(135deg, #333, #111); }
 
+        .poem-page {
+            display: none;
+        }
+
+        .poem-page.active {
+            display: block;
+        }
+
+        .poem-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .poem-page-btn {
+            border: 2px solid var(--navy);
+            background: transparent;
+            color: var(--navy);
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 0.9em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .poem-page-btn.active,
+        .poem-page-btn:hover {
+            background: var(--navy);
+            color: var(--white);
+        }
+
         footer {
             text-align: center;
             color: white;
@@ -460,60 +494,74 @@
             </div>
         </section>
 
-        <section id="interests">
-            <h2><span class="tr">🎯 İlgi Alanları</span><span class="en" style="display:none;">🎯 Interests</span></h2>
-            <ul>
-                <li><span class="tr">Web Geliştirme</span><span class="en" style="display:none;">Web Development</span></li>
-                <li><span class="tr">Yazılım Mühendisliği</span><span class="en" style="display:none;">Software Engineering</span></li>
-                <li><span class="tr">Veri Analizi</span><span class="en" style="display:none;">Data Analysis</span></li>
-                <li><span class="tr">Yapay Zeka ve Makine Öğrenmesi</span><span class="en" style="display:none;">Artificial Intelligence and Machine Learning</span></li>
-                <li><span class="tr">Şiir Yazarlığı</span><span class="en" style="display:none;">Poetry Writing</span></li>
-                <li><span class="tr">Yaratıcı Yazma</span><span class="en" style="display:none;">Creative Writing</span></li>
-            </ul>
-        </section>
-
         <section id="poems">
             <h2><span class="tr">📜 Şiirlerim</span><span class="en" style="display:none;">📜 My Poems</span></h2>
-            <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 14px; margin-bottom: 20px; border: 1px solid rgba(26,58,82,0.08); box-shadow: 0 4px 16px rgba(26,58,82,0.06);">
-                <h3 style="color:#2d5a7b;margin-bottom:10px"><span class="tr">Titrek Sanatçı</span><span class="en" style="display:none;">Trembling Artist</span></h3>
-                <p style="line-height:1.8;font-style:italic">
-                   <span class="tr">Özlemim taşmayı bilmeyen bir gözyaşı gibidir<br>
-                   Kaçtığım geçmişte derin kuyular onda belirir<br>
-                   Perişan olan bakışım her dem devadır aksime,<br>
-                   Bir yansıma, körleşmiş gerçeği sunar fecrime.<br>
-                   Mahal yok aynaya bakmama, beni çözmek için,<br>
-                   Halim bertaraf edilir, düşünce damla dizin dizin...</span>
-                   <span class="en" style="display:none;">My longing is like a tear that never ceases to fall<br>
-                   In the past I fled, deep wells appear in it<br>
-                   My distressed gaze is always a remedy against me,<br>
-                   A reflection, presenting blinded reality to my disgrace.<br>
-                   There is no room for me not to look in the mirror, to understand myself,<br>
-                   My state is set aside, thoughts drop by drop in a row...</span>
-                </p>
-                <hr style="margin:20px 0;border:none;border-top:1px solid rgba(45,90,123,0.35);">
-                <h3 style="color:#2d5a7b;margin-bottom:10px"><span class="tr">Yalın Yalnızlık</span><span class="en" style="display:none;">Bare Loneliness</span></h3>
-                <p style="line-height:1.8;font-style:italic">
-                    <span class="tr">Zamanın kıyısında asılı bir gözyaşım,<br>
-                    Evvelden beridir tarihi yıpratışım,<br>
-                    Bu kaçıncı mesel, artık yok bir çağrışım.<br>
-                    Ruh ile bedenin raksı gibi bir karışım...</span>
-                    <span class="en" style="display:none;">A tear hanging on the edge of time,<br>
-                    My history has worn away since ancient times,<br>
-                    What is this topic again, there is no more association.<br>
-                    A mixture like a dance between soul and body...</span>
-                </p>
-                <hr style="margin:20px 0;border:none;border-top:1px solid rgba(45,90,123,0.35);">
-                <h3 style="color:#2d5a7b;margin-bottom:10px"><span class="tr">Benlik</span><span class="en" style="display:none;">Self</span></h3>
-                <p style="line-height:1.8;font-style:italic">
-                    <span class="tr">Bir çocuk gülüşünde bulur aslım kendini,<br>
-                    Bir gün ışığında biterken ay çiçekleri<br>
-                    Yaşama umudum hindibalarda saklansın<br>
-                    Hırçın rüzgarın elinde bir hiç olmasın.</span>
-                    <span class="en" style="display:none;">I find my essence in a child's smile,<br>
-                    Moon flowers end in daylight<br>
-                    Let my hope for life be hidden in dandelions<br>
-                    Let it not be nothing in the hands of the fierce wind.</span>
-                </p> 
+
+            <div class="poem-page active" data-page="1">
+                <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 14px; margin-bottom: 20px; border: 1px solid rgba(26,58,82,0.08); box-shadow: 0 4px 16px rgba(26,58,82,0.06);">
+                    <h3 style="color:#2d5a7b;margin-bottom:10px"><span class="tr">Titrek Sanatçı</span><span class="en" style="display:none;">Trembling Artist</span></h3>
+                    <p style="line-height:1.8;font-style:italic">
+                       <span class="tr">Özlemim taşmayı bilmeyen bir gözyaşı gibidir<br>
+                       Kaçtığım geçmişte derin kuyular onda belirir<br>
+                       Perişan olan bakışım her dem devadır aksime,<br>
+                       Bir yansıma, körleşmiş gerçeği sunar fecrime.<br>
+                       Mahal yok aynaya bakmama, beni çözmek için,<br>
+                       Halim bertaraf edilir, düşünce damla dizin dizin...</span>
+                       <span class="en" style="display:none;">My longing is like a tear that never ceases to fall<br>
+                       In the past I fled, deep wells appear in it<br>
+                       My distressed gaze is always a remedy against me,<br>
+                       A reflection, presenting blinded reality to my disgrace.<br>
+                       There is no room for me not to look in the mirror, to understand myself,<br>
+                       My state is set aside, thoughts drop by drop in a row...</span>
+                    </p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 14px; margin-bottom: 20px; border: 1px solid rgba(26,58,82,0.08); box-shadow: 0 4px 16px rgba(26,58,82,0.06);">
+                    <h3 style="color:#2d5a7b;margin-bottom:10px"><span class="tr">Yalın Yalnızlık</span><span class="en" style="display:none;">Bare Loneliness</span></h3>
+                    <p style="line-height:1.8;font-style:italic">
+                        <span class="tr">Zamanın kıyısında asılı bir gözyaşım,<br>
+                        Evvelden beridir tarihi yıpratışım,<br>
+                        Bu kaçıncı mesel, artık yok bir çağrışım.<br>
+                        Ruh ile bedenin raksı gibi bir karışım...</span>
+                        <span class="en" style="display:none;">A tear hanging on the edge of time,<br>
+                        My history has worn away since ancient times,<br>
+                        What is this topic again, there is no more association.<br>
+                        A mixture like a dance between soul and body...</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="poem-page" data-page="2">
+                <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 14px; margin-bottom: 20px; border: 1px solid rgba(26,58,82,0.08); box-shadow: 0 4px 16px rgba(26,58,82,0.06);">
+                    <h3 style="color:#2d5a7b;margin-bottom:10px"><span class="tr">Benlik</span><span class="en" style="display:none;">Self</span></h3>
+                    <p style="line-height:1.8;font-style:italic">
+                        <span class="tr">Bir çocuk gülüşünde bulur aslım kendini,<br>
+                        Bir gün ışığında biterken ay çiçekleri<br>
+                        Yaşama umudum hindibalarda saklansın<br>
+                        Hırçın rüzgarın elinde bir hiç olmasın.</span>
+                        <span class="en" style="display:none;">I find my essence in a child's smile,<br>
+                        Moon flowers end in daylight<br>
+                        Let my hope for life be hidden in dandelions<br>
+                        Let it not be nothing in the hands of the fierce wind.</span>
+                    </p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.85); padding: 20px; border-radius: 14px; border: 1px dashed rgba(45,90,123,0.4); box-shadow: 0 4px 16px rgba(26,58,82,0.04);">
+                    <h3 style="color:#2d5a7b;margin-bottom:10px"><span class="tr">Yeni Şiir</span><span class="en" style="display:none;">New Poem</span></h3>
+                    <p style="line-height:1.8;font-style:italic">
+                        <span class="tr">Bunu senin yeni şiirin için boş alan bırakıyorum,<br>
+                        buraya eklediğin şiir 2. sayfada görünecek.<br>
+                        Böylece sayfa uzamaz ve düzen bozulmaz.</span>
+                        <span class="en" style="display:none;">I am leaving this space for your new poem,<br>
+                        the poem you add here will appear on page 2.<br>
+                        This way the page won't get too long and the layout stays neat.</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="poem-nav" aria-label="Şiir sayfaları">
+                <button class="poem-page-btn active" data-page-target="1">1</button>
+                <button class="poem-page-btn" data-page-target="2">2</button>
             </div>
         </section>
 
@@ -597,6 +645,23 @@
                     document.getElementById(e.currentTarget.dataset.section).classList.add('active');
                     closeMenu();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            const poemPages = document.querySelectorAll('.poem-page');
+            const poemButtons = document.querySelectorAll('.poem-page-btn');
+
+            poemButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetPage = button.dataset.pageTarget;
+
+                    poemPages.forEach(page => {
+                        page.classList.toggle('active', page.dataset.page === targetPage);
+                    });
+
+                    poemButtons.forEach(btn => {
+                        btn.classList.toggle('active', btn === button);
+                    });
                 });
             });
         });
