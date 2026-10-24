@@ -38,12 +38,15 @@
             top: 20px;
             left: 20px;
             display: flex;
+            flex-wrap: wrap;
+            align-items: center;
             gap: 8px;
             z-index: 1001;
             background: rgba(255, 255, 255, 0.95);
             padding: 8px 10px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,.2);
+            max-width: calc(100vw - 30px);
         }
 
         .lang-btn {
@@ -55,6 +58,8 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 0.9em;
+            line-height: 1.2;
+            white-space: nowrap;
             transition: all .3s;
         }
 
@@ -229,6 +234,7 @@
                 left: 10px;
                 top: 10px;
                 padding: 6px 8px;
+                max-width: calc(100vw - 20px);
             }
             .lang-btn {
                 padding: 5px 10px;
@@ -247,6 +253,7 @@
                 left: 8px;
                 top: 8px;
                 gap: 5px;
+                max-width: calc(100vw - 16px);
             }
             .lang-btn {
                 padding: 4px 8px;
@@ -290,8 +297,8 @@
 
         <section id="home" class="active">
             <h2><span class="tr">🏠 Ana Sayfa</span><span class="en" style="display:none;">🏠 Home</span></h2>
-            <p><span class="tr">Merhaba! Benim sayfama hoş geldiniz. Sağ üstteki menüyü kullanarak beni daha yakından tanıyabilirsiniz.</span><span class="en" style="display:none;">Hello! Welcome to my page. You can get to know me better by using the menu in the top right.</span></p>
-            <p style="margin-top:15px"><span class="tr">Menüden biyografim, yeteneklerim, şiirlerim ve daha birçok bilgiye ulaşabilirsiniz.</span><span class="en" style="display:none;">From the menu, you can access my biography, skills, poems, and much more information.</span></p>
+            <p><span class="tr">Merhaba! Benim sayfama hoş geldiniz. Sağ üstteki menüyü kullanarak beni daha yakından tanıyabilirsiniz.</span><span class="en" style="display:none;">Hello! Welcome to my page. You can get to know me better by using the menu at the top right.</span></p>
+            <p style="margin-top:15px"><span class="tr">Menüden biyografim, yeteneklerim, şiirlerim ve daha birçok bilgiye ulaşabilirsiniz.</span><span class="en" style="display:none;">From the menu, you can access my biography, skills, poems, and much more.</span></p>
         </section>
 
         <section id="education">
@@ -300,14 +307,14 @@
             <p><span class="tr">Bilgisayar Mühendisliği Bölümü</span><span class="en" style="display:none;">Computer Engineering Department</span></p>
             <p style="margin-top:15px"><strong><span class="tr">Başlangıç Tarihi: 2025</span><span class="en" style="display:none;">Start Date: 2025</span></strong></p>
             <p><strong><span class="tr">Durum: 1. sınıf</span><span class="en" style="display:none;">Status: 1st Year</span></strong></p>
-            <p style="margin-top:15px"><span class="tr">Bilgisayar mühendisliğinin temellerini öğrenirken, yazılım geliştirme ve veri analizi alanlarında kendimi geliştirmeye çalışıyorum.</span><span class="en" style="display:none;">While learning the fundamentals of computer engineering, I am developing myself in software development and data analysis.</span></p>
+            <p style="margin-top:15px"><span class="tr">Bilgisayar mühendisliğinin temellerini öğrenirken, yazılım geliştirme ve veri analizi alanlarında kendimi geliştirmeye çalışıyorum.</span><span class="en" style="display:none;">While learning the fundamentals of computer engineering, I am trying to improve myself in software development and data analysis.</span></p>
         </section>
 
         <section id="biography">
             <h2><span class="tr">👤 Biyografi</span><span class="en" style="display:none;">👤 Biography</span></h2>
-            <p><span class="tr">Merhaba! Ben Zehra Akbaş. Konya Meram Fen Lisesinden mezun oldum. 2025 YKS sınavında sayısal alanda 683. oldum. Şu an İstanbul Teknik Üniversitesinde Bilgisayar Mühendisliği öğrencisiyim.</span><span class="en" style="display:none;">Hello! I am Zehra Akbaş. I graduated from Konya Meram Science High School. I ranked 683rd in the numerical section of the 2025 YKS exam. I am currently a Computer Engineering student at Istanbul Technical University.</span></p>
-            <p style="margin-top:15px"><span class="tr">Teknoloji ve yazılım geliştirme ile ilgili yoğun bir ilgim var. Özellikle web geliştirme, veri analizi ve yapay zeka alanlarında kendimi geliştirmeye çalışıyorum.</span><span class="en" style="display:none;">I have a strong interest in technology and software development. I am particularly focused on developing myself in web development, data analysis, and artificial intelligence.</span></p>
-            <p style="margin-top:15px"><span class="tr">Boş zamanlarımda kodlama projeleri üzerinde çalışıyor ve yeni teknolojileri öğreniyorum. Ayrıca şiir yazmak da ilgi alanlarımdan biridir.</span><span class="en" style="display:none;">In my free time, I work on coding projects and learn new technologies. Poetry writing is also one of my interests.</span></p>
+            <p><span class="tr">Merhaba! Ben Zehra Akbaş. Konya Meram Fen Lisesinden mezun oldum. 2025 YKS sınavında sayısal alanda 683. oldum. Şu an İstanbul Teknik Üniversitesinde Bilgisayar Mühendisliği öğrencisiyim.</span><span class="en" style="display:none;">Hello! I am Zehra Akbaş. I graduated from Konya Meram Science High School. In the 2025 YKS exam, I ranked 683 in the numerical field. I am currently a Computer Engineering student at Istanbul Technical University.</span></p>
+            <p style="margin-top:15px"><span class="tr">Teknoloji ve yazılım geliştirme ile ilgili yoğun bir ilgim var. Özellikle web geliştirme, veri analizi ve yapay zeka alanlarında kendimi geliştiriyorum.</span><span class="en" style="display:none;">I have a strong interest in technology and software development. I am especially improving myself in web development, data analysis, and artificial intelligence.</span></p>
+            <p style="margin-top:15px"><span class="tr">Boş zamanlarımda kodlama projeleri üzerinde çalışıyor ve yeni teknolojileri öğreniyorum. Ayrıca şiir yazmak da ilgi alanlarımdan biri.</span><span class="en" style="display:none;">In my free time, I work on coding projects and learn new technologies. Writing poetry is also one of my interests.</span></p>
         </section>
 
         <section id="skills">
@@ -379,15 +386,15 @@
         <section id="projects">
             <h2><span class="tr">📚 Projeler</span><span class="en" style="display:none;">📚 Projects</span></h2>
             <ul>
-                <li><strong><span class="tr">Kişisel Web Sitesi</span><span class="en" style="display:none;">Personal Website</span></strong> - <span class="tr">HTML, CSS ve JavaScript ile oluşturulmuş portfolio sitesi.</span><span class="en" style="display:none;">Portfolio website created with HTML, CSS, and JavaScript.</span></li>
-                <li><strong><span class="tr">UV ışınları miktarı ile renk değiştiren kumaşa entegre edilmiş sensör projesi</span><span class="en" style="display:none;">Sensor Project Integrated with Fabric that Changes Color with UV Light Intensity</span></strong> - <span class="tr">henüz tasarım aşamasında</span><span class="en" style="display:none;">currently in design phase</span></li>
+                <li><strong><span class="tr">Kişisel Web Sitesi</span><span class="en" style="display:none;">Personal Website</span></strong> - <span class="tr">HTML, CSS ve JavaScript ile oluşturulmuş kişisel web sitesi.</span><span class="en" style="display:none;">Personal website created using HTML, CSS, and JavaScript.</span></li>
+                <li><strong><span class="tr">UV ışınları miktarı ile renk değiştiren kumaşa entegre edilmiş sensör projesi</span><span class="en" style="display:none;">Sensor project integrated into fabric that changes color based on UV intensity</span></strong></li>
                 <li><strong><span class="tr">Diğer projeler yakında eklenecek...</span><span class="en" style="display:none;">Other projects coming soon...</span></strong></li>
             </ul>
         </section>
 
         <section id="contact">
             <h2><span class="tr">📞 İletişim</span><span class="en" style="display:none;">📞 Contact</span></h2>
-            <p style="margin-bottom:20px"><span class="tr">Beni aşağıdaki sosyal ağlarda takip edebilir veya benimle bağlantı kurabilirsiniz:</span><span class="en" style="display:none;">You can follow me or contact me on the social networks below:</span></p>
+            <p style="margin-bottom:20px"><span class="tr">Beni aşağıdaki sosyal ağlarda takip edebilir veya benimle bağlantı kurabilirsiniz:</span><span class="en" style="display:none;">You can follow me on the social media below or get in touch with me:</span></p>
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/zehra-akbaş-102204378" target="_blank" rel="noopener noreferrer" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://github.com/zehraakbas3401-lang" target="_blank" rel="noopener noreferrer" class="social-icon github" aria-label="GitHub"><i class="fab fa-github"></i></a>
